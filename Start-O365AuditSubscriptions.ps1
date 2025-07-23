@@ -7,7 +7,7 @@ $resource = "https://manage.office.com"
 
 # 1. Get Access Token
 Write-Host "Acquiring access token..."
-$tokenResponseJson = curl.exe -s -X POST "https://login.microsoftonline.com/$tenantId/oauth2/token" `
+$tokenResponseJson = curl -s -X POST "https://login.microsoftonline.com/$tenantId/oauth2/token" `
   -H "Content-Type: application/x-www-form-urlencoded" `
   -d "grant_type=client_credentials" `
   -d "client_id=$clientId" `
@@ -36,8 +36,8 @@ $contentTypes = @(
 foreach ($contentType in $contentTypes) {
     Write-Host "Attempting to start subscription for: $contentType"
     
-    # Execute curl, capture all output to $response variable
-    $response = curl.exe -s -X POST "https://manage.office.com/api/v1.0/${tenantId}/activity/feed/subscriptions/start?contentType=${contentType}" `
+    # Execute curlpture all output to $response variable
+    $response = curl -s -X POST "https://manage.office.com/api/v1.0/${tenantId}/activity/feed/subscriptions/start?contentType=${contentType}" `
       -H "Authorization: Bearer ${accessToken}" `
       -H "Content-Type: application/json" `
       -H "Content-Length: 0"
