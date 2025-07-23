@@ -49,10 +49,15 @@ foreach ($contentType in $contentTypes) {
         # Break the loop since this is a tenant-level issue
         break
     }
+    $error_code = ($response | ConvertFrom-Json).error.code
+    if ($error_code -contains "AF20024") {
+        Write-Host "⚠️ ${contentType} is already activated. Error: #0002"
+    }
+
     else {
         # For a successful response or a different error, display the output
         Write-Host "✅ API Response:"
         Write-Host ($response | ConvertFrom-Json | ConvertTo-Json -Depth 100)
     }
-    Write-Host "`n"
+    
 }
