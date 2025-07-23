@@ -1,8 +1,3 @@
 ossec.xml
 .env
-/windows/office365_events.json
-/windows/.env
-/windows/ossec.xml
-/linux/office365_events.json
-/linux/.env
-/linux/ossec.xml
+office365_events.json
