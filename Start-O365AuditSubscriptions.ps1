@@ -34,7 +34,6 @@ $contentTypes = @(
 )
 
 foreach ($contentType in $contentTypes) {
-    Write-Host "Attempting to start subscription for: $contentType"
     
     # Execute curlpture all output to $response variable
     $response = curl -s -X POST "https://manage.office.com/api/v1.0/${tenantId}/activity/feed/subscriptions/start?contentType=${contentType}" `
@@ -44,14 +43,14 @@ foreach ($contentType in $contentTypes) {
 
     # Check if the response contains the "does not exist" error string
     if ($response -like "*does not exist*") {
-        Write-Host "❌ Monitoring is not enabled in Purview. Error: #0001"
+        Write-Host "❌ Error: #0001 | Monitoring is not enabled in Purview."
         Write-Host "This must be enabled manually in the Microsoft Purview compliance portal before subscriptions can be created."
         # Break the loop since this is a tenant-level issue
         break
     }
     $error_code = ($response | ConvertFrom-Json).error.code
     if ($error_code -contains "AF20024") {
-        Write-Host "⚠️ ${contentType} is already activated. Error: #0002"
+        Write-Host "⚠️ Error: #0002 | ${contentType} is already activated."
     }
 
     else {
