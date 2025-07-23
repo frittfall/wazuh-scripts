@@ -35,3 +35,25 @@ else
     echo "Raw response: $tokenResponseJson"
     exit
 fi
+
+# 2. Start Subscriptions
+contentTypes="DLP.All Audit.AzureActiveDirectory Audit.SharePoint Audit.Exchange Audit.General"
+
+for contentType in $contentTypes; do
+    echo "Attempting to start subscription for: $contentType"
+
+    # Changed to --fail-with-body to output response body on HTTP errors (like 400)
+    response=$(curl -s -X POST "https://manage.office.com/api/v1.0/${TENANT_ID}/activity/feed/subscriptions/start?contentType=${contentType}" \
+      -H "Authorization: Bearer ${access_token}" \
+      -H "Content-Type: application/json" \
+      -H "Content-Length: 0" 2>&1) # 2>&1 captures stderr, including curl error messages
+
+
+
+    # Optional: Add parsing for specific error messages here based on the full response
+    if echo "$response" | grep -q "does not exist"; then
+        echo "❌ Monitoring is not enabled in Purview. Error: #0001"
+        break
+    fi
+    echo "" # Newline for separation
+done
