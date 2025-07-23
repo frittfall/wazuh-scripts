@@ -44,7 +44,7 @@ foreach ($contentType in $contentTypes) {
 
     # Check if the response contains the "does not exist" error string
     if ($response -like "*does not exist*") {
-        Write-Host "❌ Monitoring is not enabled in Purview."
+        Write-Host "❌ Monitoring is not enabled in Purview. Error: #0001"
         Write-Host "This must be enabled manually in the Microsoft Purview compliance portal before subscriptions can be created."
         # Break the loop since this is a tenant-level issue
         break
