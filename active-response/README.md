@@ -1,4 +1,18 @@
-1. Define the Active Response in ossec.conf
+1. Place the Script
+
+Save your check_login_whitelist.py script in: /var/ossec/active-response/bin/
+
+```
+sudo cp ./check_login_whitelist.py /var/ossec/active-response/bin/check_login_whitelist.py
+```
+
+Make sure it’s executable:
+
+```
+chmod +x /var/ossec/active-response/bin/check_login_whitelist.py
+```
+
+2. Define the Active Response in ossec.conf
 
 Add this inside the <active-response> section:
 
@@ -11,7 +25,7 @@ Add this inside the <active-response> section:
 </active-response>
 ```
 
-2. Create a Rule to Trigger the Script
+3. Create a Rule to Trigger the Script
 
 In your custom rules file (e.g., /var/ossec/etc/rules/local_rules.xml):
 
