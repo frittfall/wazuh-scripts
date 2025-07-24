@@ -1,4 +1,3 @@
 ossec.xml
 .env
-office365_events.json
-/active-response/.env
+/data

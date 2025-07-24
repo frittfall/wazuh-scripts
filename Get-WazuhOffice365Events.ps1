@@ -9,7 +9,7 @@ $username = Read-Host "Please enter your username:"
 $password = Read-Host -Prompt "Enter your password:" -AsSecureString
 $password = [System.Runtime.InteropServices.Marshal]::PtrToStringAuto([System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($password))
 # Output file path
-$outputFile = ".\office365_events.json"
+$outputFile = ".\data\office365_events.json"
 
 # --- Script ---
 
