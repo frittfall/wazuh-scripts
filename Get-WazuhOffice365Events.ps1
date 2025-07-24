@@ -5,7 +5,7 @@ $wazuhIndexerIP = Read-Host "Enter Wazuh IP Address:"
 
 # Wazuh API credentials
 # For better security, consider loading these from a secure source instead of hardcoding.
-$username = Read-Host "Please enter your name:"
+$username = Read-Host "Please enter your username:"
 $password = Read-Host -Prompt "Enter your password:" -AsSecureString
 $password = [System.Runtime.InteropServices.Marshal]::PtrToStringAuto([System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($password))
 # Output file path
