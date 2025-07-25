@@ -37,9 +37,16 @@ $query = @{
                 },
                 @{
                     terms = @{
-                        "data.office365.Operation" = @("UserLoginFailed", "UserLoggedIn") # Corrected field path
+                        "data.office365.Operation" = @("UserLoginFailed", "UserLoggedIn")
                     }
                 }
+            )
+            must_not = @(
+                @{
+                    term = @{
+                        "GeoLocation.country_name" = "Norway"
+                    }
+                }  
             )
         }
     }
@@ -50,7 +57,7 @@ $query = @{
             }
         }
     )
-    size = 3
+    size = 1
 }
 
 # Convert the query to a JSON string

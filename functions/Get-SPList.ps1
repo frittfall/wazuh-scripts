@@ -1,4 +1,4 @@
-function Get-SPExclusionList {
+function Get-SPList {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)]

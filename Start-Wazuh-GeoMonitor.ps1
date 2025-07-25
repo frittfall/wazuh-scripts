@@ -11,7 +11,6 @@ $SharePointList = $env:WAZUH_SHAREPOINT_LIST
 
 $AccessToken = Get-M365AuthToken -TenantId $TenantId -ClientId $ClientId -ClientSecret $ClientSecret
 
-. ./functions/Get-SPExclusionList.ps1
+. ./functions/Get-SPList.ps1
 
-$exclusionList = Get-SPExclusionList -AccessToken $AccessToken -SharePointDomain $SharePointDomain -SharePointSite $SharePointSite -SharePointList $SharePointList
-write-host $exclusionList
+$exclusionList = Get-SPList -AccessToken $AccessToken -SharePointDomain $SharePointDomain -SharePointSite $SharePointSite -SharePointList $SharePointList
